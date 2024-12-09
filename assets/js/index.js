@@ -32,7 +32,7 @@ $(document).ready(() => {
               <a class="text-decoration-none" href="detalhes.html?id=${
                 product.id
               }">
-                <div class="card cursor-pointer w-100 h-100">
+                <div class="card card-produto cursor-pointer w-100 h-100">
                   <div 
                     class="card-img-container d-flex justify-content-center align-items-center" 
                     style="width: 100%; height: 200px"
@@ -62,7 +62,7 @@ $(document).ready(() => {
                       <h3 class="m-0">R$ ${formattedPrice}</h3>
                       ${
                         product.discountPercentage > 0
-                          ? `<span class="text-success ms-2">
+                          ? `<span class="text-success ms-2 fw-semibold">
                               ${product.discountPercentage
                                 .toString()
                                 .replace(".", ",")}% OFF
