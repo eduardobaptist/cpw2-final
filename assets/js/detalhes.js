@@ -9,52 +9,61 @@ $(document).ready(() => {
       $("#produto-infos").html("");
       $("#produto-imagens").html("");
 
-      //galeria de imagens
-      $("#produto-imagens")
-        .append(`<div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner">
-    ${product.images.map(image => 
-      `<div class="carousel-item active">
-      <img src="${image}" class="d-block w-100">
-    </div>`
-    ).join("")}
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Anterior</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Próximo</span>
-  </button>
-</div>
+      // galeria de imagens
+      $("#produto-imagens").append(`
+        <div class="mb-3">
+            <div id="produtoCarrossel" data-bs-ride="carousel">
+                <div class="d-flex justify-content-start align-items-center">
+                    <div class="d-flex flex-column mx-3" style="max-width: 100px;">
+                        ${product.images
+                          .map(
+                            (imagem, index) => `
+                                <div 
+                                    class="my-1 thumbnail-wrapper ${
+                                      index === 0 ? "active" : ""
+                                    }" 
+                                    data-index="${index}"
+                                    style="width: 80px; height: 80px; cursor: pointer;"
+                                >
+                                    <img 
+                                        src="${imagem}" 
+                                        class="img-thumbnail" 
+                                        style="width: 100%; height: 100%; object-fit: cover;"
+                                        alt="Miniatura ${index + 1}"
+                                    >
+                                </div>
+                            `
+                          )
+                          .join("")}
+                    </div>
+                    <div class="d-flex align-items-center">
+                        ${product.images
+                          .map(
+                            (imagem, index) => `
+                                <div class="carousel-item ${
+                                  index === 0 ? "active" : ""
+                                } text-center">
+                                    <img src="${imagem}" class="w-50 h-auto mx-auto" alt="Imagem do Produto ${
+                              index + 1
+                            }">
+                                </div>
+                            `
+                          )
+                          .join("")}
+                    </div>
+                </div>
+            </div>
+        </div>    
+    `);
 
-<!-- Thumbnails -->
-<div class="mt-3 d-flex justify-content-center">  
-  ${product.images.map(image => 
-    `<button 
-    class="btn p-0 border-0 thumbnail mx-2 active" 
-    data-bs-target="#carouselExample" 
-    data-bs-slide-to="1">
-    <img src="${image}" class="img-thumbnail" alt="Thumb 2">
-  </button>`
-  ).join("")}
-</div>`);
+      $(".thumbnail-wrapper").on("click", function () {
+        const index = $(this).data("index");
 
-      const carousel = document.querySelector("#carouselExample");
-      const thumbnails = document.querySelectorAll(".thumbnail");
+        $(".thumbnail-wrapper").removeClass("active");
+        $(".carousel-item").removeClass("active");
 
-      carousel.addEventListener("slide.bs.carousel", (event) => {
-        thumbnails.forEach((thumb) => thumb.classList.remove("active"));
-
-        thumbnails[activeIndex].classList.add("active");
-      });
-
-      thumbnails.forEach((thumb, index) => {
-        thumb.addEventListener("click", () => {
-          const bootstrapCarousel = bootstrap.Carousel.getInstance(carousel);
-          bootstrapCarousel.to(index);
-        });
+        $(this).addClass("active");
+        $(`#produtoCarrossel .carousel-item:eq(${index})`).addClass("active");
       });
 
       // infos do produto
@@ -80,7 +89,7 @@ $(document).ready(() => {
       };
 
       $("#produto-infos").append(`
-        <div class="card w-100">
+        <div class="card w-100 h-100">
           <div class="card-body">
             <h3>${product.title}</h3>
             <span class="me-1">${product.rating.toFixed(1)}</span>
@@ -104,7 +113,7 @@ $(document).ready(() => {
             <p class="text-sm text-secondary">
               ${product.description}
             </p>
-            <strong>Estoque disponível: ${product.stock}</strong>
+            <strong class="text-success">Estoque disponível: ${product.stock}</strong>
             <button class="btn btn-primary mt-3 py-3 w-100 text-lg">Comprar</button>
           </div>
         </div>

@@ -28,13 +28,13 @@ body {
   transform: translateY(-5px);
 }
 
-.thumbnail img {
+.thumbnail-wrapper img {
   cursor: pointer;
   opacity: 0.7;
   transition: opacity 0.3s, border 0.3s;
 }
-.thumbnail.active img,
-.thumbnail:hover img {
+.thumbnail-wrapper.active img,
+.thumbnail-wrapper:hover img {
   opacity: 1;
   border: 2px solid #0d6efd;
 }
