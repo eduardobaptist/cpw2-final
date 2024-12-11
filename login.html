@@ -31,70 +31,43 @@
     <link rel="stylesheet" href="assets/css/index.css" />
     <title>Mercado Livre</title>
   </head>
-  <body>
-    <header>
-      <nav class="navbar meli-header sticky-top py-2">
-        <div class="container">
-          <img
-            src="assets/img/nav_logo.png"
-            alt="Mercado Livre"
-            class="d-inline-block align-text-top"
-          />
-          <form class="d-flex w-50" role="search">
-            <input
-              class="form-control me-2"
-              type="search"
-              placeholder="Buscar produtos, marcas e muito mais…"
-              aria-label="Pesquisar"
-            />
-            <button class="btn btn-dark" type="submit">Buscar</button>
-          </form>
-        </div>
-      </nav>
-    </header>
+  <body class="text-center">
+    <main
+      class="content bg-body-secondary d-flex justify-content-center align-items-center row"
+    >
+      <div class="card col-12 col-md-3">
+        <div class="card-body">
+          <form id="login-form">
+            <img class="my-3" src="assets/img/nav_logo.png" alt="" />
+            <div id="erro-container" class="w-100 my-2"></div>
+            <div class="form-floating mb-2">
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                placeholder="email@exemplo.com"
+                required
+              />
+              <label for="floatingInput">Email</label>
+            </div>
+            <div class="form-floating mb-4">
+              <input
+                type="password"
+                class="form-control"
+                id="senha"
+                placeholder="Senha"
+                required
+              />
+              <label for="floatingPassword">Senha</label>
+            </div>
 
-    <main class="content bg-body-secondary">
-      <div id="produtos-container" class="container">
-        <div class="card my-3">
-          <div class="row w-100 py-3 d-flex">
-            <div class="col-lg-8" id="produto-imagens">
-              <!-- Aqui o JS carrega a galeria de imagens -->
-            </div>
-            <div
-              class="col-lg-4 h-100 d-flex justify-content-center"
-              id="produto-infos"
+            <button
+              class="w-100 btn btn-lg btn-primary"
+              type="submit"
             >
-              <div class="card w-100 h-100">
-                <div class="card-body">
-                  <h3 id="nome-produto"></h3>
-                  <div class="d-flex align-items-center">
-                    <span class="me-1" id="avaliacao-numero"></span>
-                    <div id="avaliacao-estrelas" class="d-flex"></div>
-                    <span class="ms-1" id="quantidade-avaliacoes"></span>
-                  </div>
-                  <div class="d-flex mt-1 align-items-center">
-                    <h1 class="m-0 display-6" id="preco-produto"></h1>
-                    <span
-                      id="desconto-produto"
-                      class="text-success ms-2 fw-semibold"
-                    ></span>
-                  </div>
-                  <p
-                    class="card-text text-body-tertiary mt-1"
-                    id="preco-parcelas"
-                  ></p>
-                  <p class="text-sm text-secondary" id="descricao-produto"></p>
-                  <strong class="text-success" id="estoque-disponivel"></strong>
-                  <button
-                    id="btn-comprar"
-                    class="btn btn-primary mt-3 py-3 w-100 text-lg"
-                  >
-                    Comprar
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
+              Entrar
+            </button>
+          </form>
         </div>
       </div>
     </main>
@@ -136,6 +109,6 @@
     ></script>
 
     <!-- importando JS da aplicação -->
-    <script src="assets/js/detalhes.js"></script>
+    <script src="assets/js/login.js"></script>
   </body>
 </html>
