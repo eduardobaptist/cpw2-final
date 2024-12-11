@@ -111,9 +111,9 @@ $(document).ready(() => {
 });
 
 $("#btn-comprar").on("click", function () {
-  if (JSON.parse(localStorage.getItem("user"))?.length > 0) {
-    window.location.href = `ckeckout.html?id=${id}`;
+  if (JSON.parse(localStorage.getItem("user"))) {
+    window.location.href = `checkout.html?id=${id}`;
   } else {
-    window.location.href = `login.html?redirect=ckeckout.html?id=${id}`;
+    window.location.href = `login.html?redirect=checkout.html?id=${id}`;
   }
 });

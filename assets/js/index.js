@@ -49,7 +49,7 @@ $(document).ready(() => {
                     <p class="card-text">
                       ${product.title}
                       ${
-                        product.brand.length > 0
+                        product.brand?.length > 0
                           ? `<br><span class="text-secondary small">por ${product.brand}</span>`
                           : ""
                       }
