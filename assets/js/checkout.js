@@ -20,10 +20,10 @@ $(document).ready(() => {
       $("#erro-container").html("");
       if (modoPagamento === "pix") {
         $("#step2-pix").addClass("active");
-        
+
         //gerando código do pix
         $("#pix-code").val(gerarCodigoPix());
-        
+
         //aguardando os 10 segundos do PIX
         setTimeout(() => {
           window.location.href = `compraFinalizada.html?id=${id}`;
@@ -57,6 +57,11 @@ $(document).ready(() => {
       mostrarErro("Número do cartão inválido");
     }
   });
+});
+
+$("#copiar-btn").on("click", () => {
+  //copiando pro clipboard
+  navigator.clipboard.writeText($("#pix-code").val());
 });
 
 function mostrarErro(mensagem) {
